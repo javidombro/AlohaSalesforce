@@ -15,7 +15,10 @@ Dependence is transitive. For example, if A depends on B, and B depends on C, bo
 - REMOVE item1: remove item1, and those on which it depends, if possible
 - LIST: list the names of all currently-installed components
 
+## Design Patterns used in this project
 
+- SINGLETON: I used singleton to have only one instance of each component.
+- COMMAND: I used the command pattern to be able to add new functionalities in future without making much changes.
 
 ## Installation
 
