@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AlohaSalesforce.Commands
 {
-    class InstallCommand : Command
+    public class InstallCommand : Command
     {
         public string Execute(string[] args)
         {

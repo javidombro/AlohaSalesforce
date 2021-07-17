@@ -1,6 +1,6 @@
 ﻿namespace AlohaSalesforce.Commands
 {
-    interface Command
+    public interface Command
     {
         public string Execute(string[] args);
     }

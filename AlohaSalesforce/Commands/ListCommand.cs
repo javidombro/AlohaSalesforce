@@ -3,7 +3,7 @@ using System.Text;
 
 namespace AlohaSalesforce.Commands
 {
-    class ListCommand : Command
+    public class ListCommand : Command
     {
         public string Execute(string[] args)
         {

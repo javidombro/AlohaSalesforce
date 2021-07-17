@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AlohaSalesforce.Commands
 {
-    class RemoveCommand : Command
+    public class RemoveCommand : Command
     {
         public string Execute(string[] args)
         {

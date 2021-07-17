@@ -2,7 +2,7 @@
 
 namespace AlohaSalesforce.Entities
 {
-    class Component
+    public class Component
     {
         public static Dictionary<string, Component> knownComponents = new Dictionary<string, Component>();
         public string Name { get; set; }

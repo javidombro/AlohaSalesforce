@@ -1,12 +1,15 @@
 ﻿using AlohaSalesforce.Entities;
 using System.Collections.Generic;
+using System.Text;
 
 namespace AlohaSalesforce.Commands
 {
-    class DependCommand : Command
+    public class DependCommand : Command
     {
         public string Execute(string[] args)
         {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine(string.Join(" ", args));
             var componentName = args[1];
             var component = Component.GetComponent(componentName);
 
@@ -22,12 +25,13 @@ namespace AlohaSalesforce.Commands
             {
                 if (dependency.DependsOn(component))
                 {
-                    return $"{dependency.Name} depends on {component.Name}, ignoring command";
+                    builder.AppendLine($"{dependency.Name} depends on {component.Name}, ignoring command");
+                    return builder.ToString();
                 }
             }
             // 3. Add dependencies
             AddDependencies(component, newDependencies);
-            return string.Join(" ", args);
+            return builder.ToString();
         }
 
         private void AddDependencies(Component component, List<Component> newDependencies)

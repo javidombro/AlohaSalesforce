@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace AlohaSalesforce
 {
-    class Program
+    public class Program
     {
 
         private static readonly Dictionary<string, Command> commands = new Dictionary<string, Command>()
@@ -16,7 +16,8 @@ namespace AlohaSalesforce
             { "REMOVE", new RemoveCommand() }
         };
 
-        static void Main(string[] args)
+        public static string output = "";
+        public static void Main()
         {
             while (true)
             {
