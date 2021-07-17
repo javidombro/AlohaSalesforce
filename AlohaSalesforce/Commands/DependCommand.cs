@@ -9,7 +9,7 @@ namespace AlohaSalesforce.Commands
         public string Execute(string[] args)
         {
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine(string.Join(" ", args));
+            builder.Append(string.Join(" ", args));
             var componentName = args[1];
             var component = Component.GetComponent(componentName);
 
@@ -25,7 +25,8 @@ namespace AlohaSalesforce.Commands
             {
                 if (dependency.DependsOn(component))
                 {
-                    builder.AppendLine($"{dependency.Name} depends on {component.Name}, ignoring command");
+                    builder.AppendLine();
+                    builder.Append($"{dependency.Name} depends on {component.Name}, ignoring command");
                     return builder.ToString();
                 }
             }
