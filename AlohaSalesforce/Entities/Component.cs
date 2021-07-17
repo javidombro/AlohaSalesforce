@@ -9,6 +9,7 @@ namespace AlohaSalesforce.Entities
         public ICollection<Component> Dependencies { get; set; } = new List<Component>();
         public ICollection<Component> Dependents { get; set; } = new List<Component>();
         public bool IsInstalled { get; set; } = false;
+        public bool ExplicityInstalled { get; set; } = false;
 
         private Component(string name)
         {

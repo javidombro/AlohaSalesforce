@@ -61,13 +61,13 @@ namespace UnitTests
                                 "INSTALL DNS\r\n" +
                                 "Installing DNS\r\n" +
                                 "LIST\r\n" +
+                                "BROWSER\r\n" +
+                                "DNS\r\n" +
+                                "foo\r\n" +
+                                "HTML\r\n" +
                                 "NETCARD\r\n" +
                                 "TCPIP\r\n" +
                                 "TELNET\r\n" +
-                                "foo\r\n" +
-                                "HTML\r\n" +
-                                "BROWSER\r\n" +
-                                "DNS\r\n" +
                                 "REMOVE TELNET\r\n" +
                                 "Removing TELNET\r\n" +
                                 "REMOVE NETCARD\r\n" +
@@ -87,15 +87,15 @@ namespace UnitTests
                                 "REMOVE TCPIP\r\n" +
                                 "TCPIP is not installed\r\n" +
                                 "LIST\r\n" +
-                                "NETCARD\r\n" +
                                 "foo\r\n" +
+                                "NETCARD\r\n" +
                                 "END\r\n";
 
             //Act
             Program.Main();
 
             //Assert
-            var result = sw.ToString();
+            var result = sw.ToString();//.Replace(Environment.NewLine,"");
             expected.Should().Be(result);
 
         }

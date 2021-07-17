@@ -17,9 +17,9 @@ namespace AlohaSalesforce.Commands
             var component = Component.GetComponent(componentName);
             if (!component.IsInstalled)
             {
-                return $"{component.Name} is not installed";
+                return $"{string.Join(" ", args)}{Environment.NewLine}{component.Name} is not installed";
             }
-            return Remove(component);
+            return $"{string.Join(" ", args)}{Environment.NewLine}{Remove(component)}";
         }
 
         private string Remove(Component component)
@@ -37,7 +37,7 @@ namespace AlohaSalesforce.Commands
             //Checks if is possible to remove it's dependencies
             foreach (var dependency in component.Dependencies)
             {
-                if (!dependency.Dependents.Any(c => c.IsInstalled))
+                if (!dependency.ExplicityInstalled && !dependency.Dependents.Any(c => c.IsInstalled))
                 {
                     builder.AppendLine(Remove(dependency));
                 }

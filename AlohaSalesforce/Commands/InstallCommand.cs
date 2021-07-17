@@ -14,22 +14,28 @@ namespace AlohaSalesforce.Commands
                 throw new ArgumentOutOfRangeException("Name longer than expected");
             }
             var component = Component.GetComponent(componentName);
-            return Install(component);
+            if (component.IsInstalled)
+            {
+                return $"{string.Join(" ", args)}{Environment.NewLine}{component.Name} is already installed\n";
+            }
+
+            component.ExplicityInstalled = true;
+            return $"{string.Join(" ", args)}{Environment.NewLine}{Install(component)}";
         }
 
         private string Install(Component component)
         {
             StringBuilder builder = new StringBuilder();
-            if (component.IsInstalled)
+            if (!component.IsInstalled)
             {
-                return $"{component.Name} is already installed\n";
+                foreach (var dependency in component.Dependencies)
+                {
+                    builder.Append(Install(dependency));
+                }
+                component.IsInstalled = true;
+                builder.AppendLine($"Installing {component.Name}");
             }
-            foreach (var dependency in component.Dependencies)
-            {
-                builder.Append(Install(dependency));
-            }
-            component.IsInstalled = true;
-            builder.AppendLine($"Installing {component.Name}");
+
             return builder.ToString();
         }
     }
