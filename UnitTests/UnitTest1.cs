@@ -2,6 +2,7 @@ using AlohaSalesforce;
 using FluentAssertions;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using Xunit;
 
 namespace UnitTests
@@ -9,11 +10,9 @@ namespace UnitTests
     public class UnitTest1
     {
         [Fact]
-        public void Test1()
+        public void CompleteTest_ShouldReturn_ExpectedOutput()
         {
             //Arrange
-
-            string.Format("Ploeh{0}", Environment.NewLine);
             string input = @"DEPEND TELNET TCPIP NETCARD
                             DEPEND TCPIP NETCARD
                             DEPEND NETCARD TCPIP
@@ -95,7 +94,9 @@ namespace UnitTests
             Program.Main();
 
             //Assert
-            var result = sw.ToString();//.Replace(Environment.NewLine,"");
+            var result = sw.ToString();
+            result = Regex.Replace(result, @"\s+", string.Empty);
+            expected = Regex.Replace(expected, @"\s+", string.Empty);
             expected.Should().Be(result);
 
         }

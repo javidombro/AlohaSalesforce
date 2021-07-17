@@ -5,23 +5,32 @@ using System.Text;
 
 namespace AlohaSalesforce.Commands
 {
+    /// <summary>
+    /// Implements the REMOVE command
+    /// </summary>
     public class RemoveCommand : Command
     {
         public string Execute(string[] args)
         {
+            var builder = new StringBuilder();
+            builder.AppendLine(string.Join(" ", args));
             var componentName = args[1];
             if (componentName.Length > 10)
             {
                 throw new ArgumentException("Name longer than expected");
             }
             var component = Component.GetComponent(componentName);
-            if (!component.IsInstalled)
-            {
-                return $"{string.Join(" ", args)}{Environment.NewLine}{component.Name} is not installed";
-            }
-            return $"{string.Join(" ", args)}{Environment.NewLine}{Remove(component)}";
+
+            var output = component.IsInstalled ? Remove(component) : $"{component.Name} is not installed";
+            builder.Append(output);
+            return builder.ToString();
         }
 
+        /// <summary>
+        /// Removes the given component and it's dependencies whenever is possible.
+        /// </summary>
+        /// <param name="component"></param>
+        /// <returns></returns>
         private string Remove(Component component)
         {
             StringBuilder builder = new StringBuilder();

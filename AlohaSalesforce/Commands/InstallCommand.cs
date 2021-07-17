@@ -4,25 +4,33 @@ using System.Text;
 
 namespace AlohaSalesforce.Commands
 {
+    /// <summary>
+    /// Implements the INSTALL command.
+    /// </summary>
     public class InstallCommand : Command
     {
         public string Execute(string[] args)
         {
+
+            var builder = new StringBuilder();
+            builder.AppendLine(string.Join(" ", args));
             var componentName = args[1];
             if (componentName.Length > 10)
             {
                 throw new ArgumentOutOfRangeException("Name longer than expected");
             }
             var component = Component.GetComponent(componentName);
-            if (component.IsInstalled)
-            {
-                return $"{string.Join(" ", args)}{Environment.NewLine}{component.Name} is already installed\n";
-            }
-
             component.ExplicityInstalled = true;
-            return $"{string.Join(" ", args)}{Environment.NewLine}{Install(component)}";
+            var output = component.IsInstalled ? $"{component.Name} is already installed" : Install(component);
+            builder.Append(output);
+            return builder.ToString();
         }
 
+        /// <summary>
+        /// Installs the given component and all it's dependencies.
+        /// </summary>
+        /// <param name="component"></param>
+        /// <returns></returns>
         private string Install(Component component)
         {
             StringBuilder builder = new StringBuilder();
@@ -35,7 +43,6 @@ namespace AlohaSalesforce.Commands
                 component.IsInstalled = true;
                 builder.AppendLine($"Installing {component.Name}");
             }
-
             return builder.ToString();
         }
     }

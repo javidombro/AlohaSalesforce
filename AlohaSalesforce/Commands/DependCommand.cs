@@ -4,6 +4,9 @@ using System.Text;
 
 namespace AlohaSalesforce.Commands
 {
+    /// <summary>
+    /// Implements the DEPEND command
+    /// </summary>
     public class DependCommand : Command
     {
         public string Execute(string[] args)
@@ -35,6 +38,11 @@ namespace AlohaSalesforce.Commands
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Adds the list of dependencies to the given component.
+        /// </summary>
+        /// <param name="component"></param>
+        /// <param name="newDependencies"></param>
         private void AddDependencies(Component component, List<Component> newDependencies)
         {
             foreach (var dependency in newDependencies)

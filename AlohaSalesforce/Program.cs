@@ -16,7 +16,6 @@ namespace AlohaSalesforce
             { "REMOVE", new RemoveCommand() }
         };
 
-        public static string output = "";
         public static void Main()
         {
             while (true)

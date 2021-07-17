@@ -4,6 +4,9 @@ using System.Text;
 
 namespace AlohaSalesforce.Commands
 {
+    /// <summary>
+    /// Implements the LIST command
+    /// </summary>
     public class ListCommand : Command
     {
         public string Execute(string[] args)

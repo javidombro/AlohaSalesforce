@@ -15,6 +15,13 @@ namespace AlohaSalesforce.Entities
         {
             Name = name;
         }
+
+        /// <summary>
+        /// [Singleton Pattern]
+        /// Gets the instance of the component with the given name.
+        /// </summary>
+        /// <param name="componentName"></param>
+        /// <returns>The component whit name="componentName"</returns>
         internal static Component GetComponent(string componentName)
         {
             var component = knownComponents.GetValueOrDefault(componentName);
@@ -26,9 +33,16 @@ namespace AlohaSalesforce.Entities
             return component;
         }
 
+        /// <summary>
+        /// Checks if the given component is a dependency
+        /// </summary>
+        /// <param name="component"></param>
+        /// <returns>
+        /// true if the component is a dependency (directly or indirectly)
+        /// false if the component is not a dependency
+        /// </returns>
         internal bool DependsOn(Component component)
         {
-            //var result = false;
             if (Dependencies.Contains(component))
             {
                 return true;
