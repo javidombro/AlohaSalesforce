@@ -20,7 +20,7 @@ Dependence is transitive. For example, if A depends on B, and B depends on C, bo
 - SINGLETON: I used singleton to have only one instance of each component.
 - COMMAND: I used the command pattern to be able to add new functionalities in future without making much changes.
 
-## Installation
+## Instruction to run the code
 
 To run the application you need to have installed the [.NET SDK](https://docs.microsoft.com/en-us/dotnet/core/install/windows).
 
@@ -29,6 +29,11 @@ Once installed go to the solution folder and run the following commands:
 ```sh
 dotnet build
 dotnet run --project .\AlohaSalesforce\AlohaSalesforce.csproj
+```
+Once the program is running, it will be reading the commands from the stdin.
+To finish the excecution type:
+```sh
+END
 ```
 
 To run tests:
