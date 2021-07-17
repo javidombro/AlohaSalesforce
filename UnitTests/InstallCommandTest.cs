@@ -2,13 +2,13 @@
 using AlohaSalesforce.Entities;
 using FluentAssertions;
 using System.Linq;
-using Xunit;
 
 namespace UnitTests
 {
     public class InstallCommandTest
     {
-        [Fact]
+        // Test disabled (uncomment the line bellow to use it)
+        //[Fact]
         public void Depend_A_B_And_Depend_B_C_ShouldBeTransitive()
         {
             //Arrange
