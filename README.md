@@ -19,9 +19,9 @@ Dependence is transitive. For example, if A depends on B, and B depends on C, bo
 
 ## Installation
 
-To run the application you need to have installed [.NET SDK](https://docs.microsoft.com/en-us/dotnet/core/install/windows).
+To run the application you need to have installed the [.NET SDK](https://docs.microsoft.com/en-us/dotnet/core/install/windows).
 
-Go to the solution folder and run the following commands:
+Once installed go to the solution folder and run the following commands:
 
 ```sh
 dotnet build
